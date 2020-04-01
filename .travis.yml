@@ -13,7 +13,7 @@ after_deploy:
 jobs:
   include:
     - stage: test and deploy
-      script: ./bin/travis/scripts.sh
+      script: ./bin/travis/script.sh
       deploy:
         skip_cleanup: true
         provider: script
