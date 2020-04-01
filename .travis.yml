@@ -1,0 +1,21 @@
+# https://docs.travis-ci.com/user/languages/javascript-with-nodejs/
+language: node_js
+
+install:
+  - ./bin/travis/install.sh
+
+script:
+  - ./bin/travis/script.sh
+
+before_deploy:
+  - ./bin/travis/before_deploy.sh
+
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: ./bin/travis/deploy.sh
+  on:
+    all_branches: true
+
+after_deploy:
+  - ./bin/travis/after_deploy.sh
