@@ -4,6 +4,8 @@ language: node_js
 install:
   - ./bin/travis/install.sh
 
+script: true
+
 before_deploy:
   - ./bin/travis/before_deploy.sh
 
