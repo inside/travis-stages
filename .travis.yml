@@ -5,7 +5,7 @@ install:
   - ./bin/travis/install.sh
 
 script: |
-  [ "$TRAVIS_BRANCH" = "master" && "$TRAVIS_PULL_REQUEST" = "false" ] && ./bin/travis/script.sh
+  [[ "$TRAVIS_BRANCH" = "master" && "$TRAVIS_PULL_REQUEST" = "false" ]] && ./bin/travis/script.sh
 
 before_deploy:
   - ./bin/travis/before_deploy.sh
