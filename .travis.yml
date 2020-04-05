@@ -4,7 +4,8 @@ language: node_js
 install:
   - ./bin/travis/install.sh
 
-script: true
+script: |
+  [[ "$TRAVIS_BRANCH" = "master" && "$TRAVIS_PULL_REQUEST" = "false" ]] && ./bin/travis/script.sh
 
 before_deploy:
   - ./bin/travis/before_deploy.sh
@@ -15,8 +16,17 @@ after_deploy:
 jobs:
   include:
     - stage: test and deploy
+      if: branch != master
       script: ./bin/travis/script.sh
     - # stage name not required, will continue to use `test and deploy`
+      deploy:
+        skip_cleanup: true
+        provider: script
+        script: ./bin/travis/deploy.sh
+        on:
+          all_branches: true
+    - stage: deploy
+      if: branch = master
       deploy:
         skip_cleanup: true
         provider: script
